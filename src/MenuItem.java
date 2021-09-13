@@ -1,51 +1,39 @@
-import java.util.Date;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 public class MenuItem {
-
     private String name;
     private String description;
-    private Double price;
     private String category;
-    private Boolean isNew;
+    private double price;
+    private boolean isNew;
+    void setName(String name) { this.name = name; }
+    void setDescription(String description) { this.description = description; }
+    void setCategory(String category) { this.category = category; }
+    void setPrice(double price) { this.price = price; }
+    void setIsNew(boolean isNew) { this.isNew = isNew; }
+    String getName() { return name; }
+    String getDescription() { return description; }
+    String getCategory() { return category; }
+    double getPrice() { return price; }
+    boolean isNew() { return isNew; }
 
-
-
-    public MenuItem(String name, String description, Double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-
-        this.category = "Not Categorized";
-        this.isNew = false;
+    @Override
+    public String toString() {
+        return "name=" + name + ",category=" + category + ",price=" + price + ",description=" + description + ",isNew=" + isNew;
     }
 
-    public MenuItem(String name, String description, Double price, String category, Boolean isNew) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.isNew = isNew;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Objects.equals(getName().toLowerCase(), menuItem.getName().toLowerCase());
     }
 
-    public String getName() { return this.name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public String getDescription() { return this.description; }
-
-    public void setDescription(String description) { this.description = description; }
-
-    public Double getPrice() { return this.price; }
-
-    public void setPrice(Double price) { this.price = price; }
-
-    public String getCategory() { return this.category; }
-
-    public void setCategory(String category) { this.category = category; }
-
-    public Boolean getIsNew() { return this.isNew; }
-
-    public void setIsNew(Boolean isNew) { this.isNew = isNew; }
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getDescription(), getCategory(), getPrice(), isNew());
+    }
 }
-
